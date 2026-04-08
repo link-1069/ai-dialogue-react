@@ -1,6 +1,6 @@
 {
   "name": "ai-dialogue-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "description": "A pure UI dialogue box component for AI chat applications, built with React and Tailwind CSS.",
   "keywords": [
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
-    "ai-dialogue-react": "^0.0.1",
+    "ai-dialogue-react": "^0.0.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwindcss": "^4.2.2"

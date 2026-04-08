@@ -8,8 +8,17 @@
 - 用户实时语音识别文本 `partialText`
 - AI 流式输出文本 `aiPartialText`
 - 打字机逐字显示
+- 实时文本落入正式消息后不会重复打一遍
 - 头像、气泡背景、文本样式自定义
 - 自动注入基础动画样式，无需额外引入组件 CSS 文件
+
+## 更新说明
+
+- 当前 README 对应 npm 最新 patch 版本
+- 默认名称会显示在头像右侧约 20px 位置
+- 对话项默认垂直间距为 40px
+- 用户和 AI 的实时文本阶段共用 `partialTextColor`
+- AI 实时文本可高亮显示，进入正式消息后恢复正式样式
 
 ## 1. 安装
 
@@ -183,6 +192,8 @@ export default function App() {
 3. AI 返回过程中，持续更新 `aiPartialText`
 4. AI 返回结束后，把最终文本 push 到 `messages`，然后清空 `aiPartialText`
 
+组件会识别“刚刚结束的实时文本”与“新加入的正式消息”是否是同一段内容。如果你按上面的时机更新，实时文本结束后进入 `messages` 时不会再重新触发一次打字机动画。
+
 ## 5. 数据结构
 
 ```ts
@@ -227,6 +238,13 @@ export interface Message {
 | `aiBubbleStyle` | `CSSProperties` | AI 气泡样式 |
 | `partialTextColor` | `string` | 实时文本颜色，用户与 AI 流式阶段共用，默认 `#ffd54f` |
 
+## 7.1 实时文本与正式消息的关系
+
+- `partialText` 和 `aiPartialText` 适合承接实时识别 / 流式返回中的“正在生成内容”
+- 当实时阶段结束后，再把最终结果加入 `messages`
+- 如果加入 `messages` 的内容与刚刚结束的实时文本一致，组件会直接展示正式消息，不会再重复逐字打印
+- AI 在实时阶段可以使用高亮色，进入正式消息后会回到正式气泡文本样式
+
 ## 7. 自定义头像和背景图
 
 ```tsx
@@ -253,6 +271,8 @@ relative w-[1000px] h-[653px] overflow-y-auto flex flex-col gap-10 dlg-no-scroll
 ```
 
 这更适合大屏、数字人展示页，不太适合直接放进移动端或普通表单页。实际项目里通常建议你传入自己的 `className` 或 `style` 覆盖默认尺寸。
+
+默认名称样式会带上约 20px 的左侧偏移，方便名称自然落在头像右侧。如果你自定义 `nameClassName`，建议保留这一层横向间距，除非你明确要改成别的布局。
 
 ### 旧消息会自动弱化
 

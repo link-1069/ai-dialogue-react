@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { DialogueBox, type Message } from './index'
+import { DialogueBox, type Message } from 'ai-dialogue-react'
 
 const TYPEWRITER_SPEED = 30
 const MESSAGE_SETTLE_DELAY = 300
