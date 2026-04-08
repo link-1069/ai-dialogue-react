@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ai-dialogue",
+  "homepage": "https://github.com/example/ai-dialogue-react",
+  "items": [
+    {
+      "name": "dialogue-box",
+      "type": "registry:component",
+      "title": "Dialogue Box",
+      "description": "AI/用户对话框组件，支持打字机逐字输出、实时 ASR 流式文本、AI 流式文本，所有视觉元素完全可自定义。无外部 CSS 依赖，样式通过 style tag 自动注入。",
+      "files": [
+        {
+          "path": "registry/dialogue-box/dialogue-box.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
